@@ -1,3 +1,4 @@
 [submodule "back-end-node-ts-set-up"]
 	path = back-end-node-ts-set-up
 	url = https://github.com/namnguyen3019/back-end-node-ts-set-up.git
+	branch = my-blog-api
