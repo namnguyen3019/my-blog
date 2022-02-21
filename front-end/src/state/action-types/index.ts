@@ -1,0 +1,4 @@
+export enum ActionType {
+  USER_LOGIN_REQUEST = "USER_LOGIN_REQUEST",
+  USER_LOGOUT = "USER_LOGOUT",
+}
