@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
-import { dummy } from "./dummyReducers";
+import { postReducers } from "./postReducers";
 import { userReducers } from "./userReducers";
 const rootReducers = combineReducers({
   /*
     state: reducer
   */
   user: userReducers,
-  posts: dummy,
+  posts: postReducers,
 });
 
 export default rootReducers;

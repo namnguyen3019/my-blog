@@ -5,7 +5,7 @@ export type UserInfo = {
   password: string;
 };
 
-export const userLogin = (userInfo: any) => {
+export const userLogin = (userInfo: UserInfo) => {
   return {
     type: ActionType.USER_LOGIN_REQUEST,
     payload: userInfo,

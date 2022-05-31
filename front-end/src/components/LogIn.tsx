@@ -1,6 +1,7 @@
 import { Box, Button, Container, FormControl, FormHelperText, Input, InputLabel, Link, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { get_all_posts } from '../state/actions/postActions';
 import { login } from '../state/actions/userActions';
 import { useAppDispatch, useAppSelector } from '../state/hook';
 
@@ -15,6 +16,7 @@ const LogIn: React.FunctionComponent = () => {
     const userToken = userLogin ? userLogin.token : null
     useEffect(() => {
         if (userToken != null) {
+            dispatch(get_all_posts())
             nagivate("/")
         }
     }, [nagivate, userToken])
