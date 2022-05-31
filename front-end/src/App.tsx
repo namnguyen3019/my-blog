@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
 import Home from './components/Home'
 import LogIn from './components/LogIn'
-import SignUp from './components/SignUp'
+import SignUp from './screens/SignUp'
 const App: React.FunctionComponent = () => {
   return (
     <BrowserRouter>

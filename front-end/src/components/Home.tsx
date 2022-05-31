@@ -7,7 +7,6 @@ import MainContent from './MainContent';
 import MyMenu from './MyMenu';
 const Home: React.FunctionComponent = () => {
     const user = useSelector((state: RootState) => state.user)
-
     return (
         <Container>
             <MyMenu />

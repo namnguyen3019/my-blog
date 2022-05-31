@@ -1,29 +1,54 @@
-import React, { useState } from 'react'
-import { userLogin } from '../state/action-creators/users'
-import { useAppDispatch } from '../state/hook'
+import { Box, Button, Container, FormControl, FormHelperText, Input, InputLabel, Link, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { login } from '../state/actions/userActions';
+import { useAppDispatch, useAppSelector } from '../state/hook';
+
 const LogIn: React.FunctionComponent = () => {
+
+    let nagivate = useNavigate();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const dispatch = useAppDispatch()
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const userLogin = useAppSelector(state => state.user)
+    const userToken = userLogin ? userLogin.token : null
+    useEffect(() => {
+        if (userToken != null) {
+            nagivate("/")
+        }
+    }, [nagivate, userToken])
+
+    const handleSubmit = (e: any) => {
         e.preventDefault();
-        dispatch(userLogin({ email, password }))
-        setEmail('')
-        setPassword('')
+        dispatch(login(email, password));
     };
     return (
-        <form onSubmit={(e) => handleSubmit(e)}>
-            <label>
-                Email
-                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </label>
-            <label>
-                Password
-                <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </label>
-            <input type="submit" value="Submit" />
-        </form>
+        <Container maxWidth="sm">
+            <Typography align="center" variant='h3' margin={10}>Welcome to My Blog</Typography>
+            <FormControl fullWidth={true}>
+                <InputLabel htmlFor="email">Email address</InputLabel>
+                <Input id="email" aria-describedby="my-helper-text" onChange={(e) => setEmail(e.target.value)} />
+                <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+            </FormControl>
+            <FormControl fullWidth={true}>
+                <InputLabel htmlFor="password">Password</InputLabel>
+                <Input id="password" aria-describedby="my-helper-text" onChange={(e) => setPassword(e.target.value)} />
+            </FormControl>
+
+            <Box textAlign='center' margin={3}>
+                <Button variant='contained' onClick={e => handleSubmit(e)}>
+                    Sign In
+                </Button>
+                <Typography marginTop={3}>Don't have an account ? Pleas sign up <Link>here</Link></Typography>
+            </Box>
+
+            <p>
+
+            </p>
+        </Container>
+
+
     )
 }
 

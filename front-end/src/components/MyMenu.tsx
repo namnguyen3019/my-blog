@@ -1,10 +1,24 @@
 import { Button, Stack, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Grid from '@mui/material/Grid';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { logOut } from '../state/actions/userActions';
+import { useAppDispatch, useAppSelector } from '../state/hook';
 const MyMenu: React.FunctionComponent = () => {
 
+    const userInfo = useAppSelector(state => state.user)
+    const userEmail = userInfo ? userInfo.email : null
+    const dispatch = useAppDispatch()
+
+    const handleOnClick = (e: any) => {
+        e.preventDefault();
+        dispatch(logOut())
+    }
+
+    useEffect(() => {
+        console.log(userInfo)
+    }, [userInfo])
     return (
         <Grid container py={4} px={4} bgcolor={"blueviolet"}>
             <Grid item xs={9}>
@@ -15,7 +29,8 @@ const MyMenu: React.FunctionComponent = () => {
                     </Typography>
                 </Stack>
             </Grid>
-            <Grid item xs={3}>
+
+            {userEmail ? <Grid><p>{`${userEmail}`}, <Button onClick={(e) => handleOnClick(e)}>Logout</Button></p></Grid> : <Grid item xs={3}>
                 <Stack direction="row" spacing={2} >
                     <Button>
                         <Link to="/signup">
@@ -27,6 +42,7 @@ const MyMenu: React.FunctionComponent = () => {
                     </Button>
                 </Stack>
             </Grid>
+            }
         </Grid>
     )
 }
