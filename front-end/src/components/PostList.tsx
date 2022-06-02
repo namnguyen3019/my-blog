@@ -12,7 +12,7 @@ const PostList: React.FunctionComponent = () => {
     const [newPostBody, setNewPostBody] = React.useState("");
     const postList = useAppSelector(store => store.posts)
     const dispatch = useAppDispatch();
-    const posts = postList ? Array.from(postList) : [];
+
 
     const handleAddNewPost = () => {
         setAddNewPost(true)
@@ -24,14 +24,10 @@ const PostList: React.FunctionComponent = () => {
     const handleCancel = () => {
         setAddNewPost(false)
     }
-
-    React.useEffect(() => {
-        console.log("postlist changes")
-    }, [dispatch, postList])
     return (
         <>
             {
-                posts.length > 0 ? (
+                postList ? (
                     <><Button onClick={() => handleAddNewPost()}>Add new post</Button>
                         {
                             addNewPost ? <>
@@ -46,7 +42,7 @@ const PostList: React.FunctionComponent = () => {
                         }
                         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
                             {
-                                posts ? posts.map((post: any) => {
+                                postList ? postList.map((post: any) => {
                                     return <SinglePost key={post._id} post={post} />
                                 }) : (<p>"No post yet"</p>)
                             }
