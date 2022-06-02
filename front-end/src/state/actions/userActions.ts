@@ -85,6 +85,8 @@ export const logOut = () => {
   return async function (dispatch: any, getState: any) {
     try {
       localStorage.removeItem("userInfo");
+      localStorage.removeItem("posts");
+      
       dispatch({
         type: ActionType.USER_LOGOUT,
         payload: {},

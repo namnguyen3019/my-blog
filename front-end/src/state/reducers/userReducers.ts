@@ -3,7 +3,7 @@ import { Action } from "../actions/userActions";
 
 //  the state has to be initialized !IMPORTANT
 //  If not: React not render
-const initialized = JSON.parse(localStorage.getItem("userInfo")!) || null;
+const initialized = {};
 export const userReducers = (state: any = initialized, action: Action) => {
   switch (action.type) {
     case ActionType.USER_LOGIN_REQUEST:

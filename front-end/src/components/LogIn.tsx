@@ -19,11 +19,12 @@ const LogIn: React.FunctionComponent = () => {
             dispatch(get_all_posts())
             nagivate("/")
         }
-    }, [nagivate, userToken])
+    }, [dispatch, nagivate, userToken])
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         dispatch(login(email, password));
+        dispatch(get_all_posts())
     };
     return (
         <Container maxWidth="sm">

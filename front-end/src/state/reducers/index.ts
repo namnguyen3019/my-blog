@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { postReducers } from "./postReducers";
+import { postDetailReducer, postReducers } from "./postReducers";
 import { userReducers } from "./userReducers";
 const rootReducers = combineReducers({
   /*
@@ -7,6 +7,8 @@ const rootReducers = combineReducers({
   */
   user: userReducers,
   posts: postReducers,
+  postDetail: postDetailReducer,
+  postDelete: postDetailReducer,
 });
 
 export default rootReducers;

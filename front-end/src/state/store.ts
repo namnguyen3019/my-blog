@@ -6,7 +6,18 @@ import rootReducers from "./reducers";
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunk));
 
-const store = createStore(rootReducers, composedEnhancer);
+const userInfoFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo")!)
+  : null;
+
+const postsFromStorage = localStorage.getItem("posts")
+  ? JSON.parse(localStorage.getItem("posts")!)
+  : null;
+const initialState: any = {
+  user: userInfoFromStorage,
+  posts: postsFromStorage,
+};
+const store = createStore(rootReducers, initialState, composedEnhancer);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
