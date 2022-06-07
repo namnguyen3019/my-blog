@@ -8,7 +8,7 @@ export default function FeaturePost() {
 
     const featurePost = useAppSelector(store => store.posts ? store.posts[0] : null)
     return (
-        <Card sx={{ maxWidth: '80%', mx: 'auto' }}>
+        <Card sx={{ maxWidth: '80%', mx: 'auto', my: 5 }}>
             <CardActionArea>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">

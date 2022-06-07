@@ -20,7 +20,7 @@ const MyMenu: React.FunctionComponent = () => {
         console.log(userInfo)
     }, [userInfo])
     return (
-        <Grid container py={4} px={4} bgcolor={"blueviolet"}>
+        <Grid container py={4} px={4} bgcolor={"#dfe3ee"}>
             <Grid item xs={9}>
                 <Stack direction="row" spacing={2}>
                     <Avatar>H</Avatar>

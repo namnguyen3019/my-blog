@@ -11,7 +11,11 @@ export const postReducers = (state: [] = initialized, action: Action) => {
     case ActionType.DELETE_POST:
       return state.filter((x: { _id: any }) => x._id !== action.payload);
     case ActionType.CREATE_POST:
-      return [action.payload, ...state];
+      if (state) {
+        return [action.payload, ...state];
+      } else {
+        return [action.payload];
+      }
     case ActionType.UPDATE_POST:
       return [
         action.payload,

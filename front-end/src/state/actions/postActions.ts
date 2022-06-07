@@ -8,7 +8,7 @@ export const get_all_posts = () => {
     const config = {
       headers: {
         "Content-type": "application/json",
-        Authentication: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
     };
 
@@ -32,7 +32,7 @@ export const get_a_post = (postId: string) => {
     const config = {
       headers: {
         "Content-type": "application/json",
-        Authentication: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
     };
 
@@ -78,11 +78,12 @@ export const add_new_post = (title: string, body: string) => {
         type: ActionType.CREATE_POST,
         payload: data,
       });
+      let updatedPostList = localStorage.getItem("posts")
+        ? JSON.parse(localStorage.getItem("posts")!)
+        : [];
 
-      const updatedPostList = [
-        ...JSON.parse(localStorage.getItem("posts")!),
-        data,
-      ];
+      updatedPostList.push(data);
+
       localStorage.setItem("posts", JSON.stringify(updatedPostList));
     } catch (error) {
       console.log(error);

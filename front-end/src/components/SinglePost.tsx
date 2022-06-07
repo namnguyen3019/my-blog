@@ -26,13 +26,20 @@ const SinglePost = ({ post }: any) => {
 
     const handleSaveChange = () => {
         const new_post = { postTitle, postBody }
-        console.log(new_post)
         dispatch(update_a_post(post._id, new_post))
         handleClose()
     }
 
 
     const handleRead = () => {
+        alert(`
+        post title: ${post.title},
+        post content: ${post.body},
+        post id: ${post._id},
+        post author: ${post.author},
+        created at: ${post.createdAt},
+        updated at: ${post.updatedAt} 
+        `)
         dispatch(get_a_post(post._id))
     }
     const handleDelete = () => {

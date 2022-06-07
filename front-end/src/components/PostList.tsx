@@ -26,27 +26,27 @@ const PostList: React.FunctionComponent = () => {
     }
     return (
         <>
+            <Button onClick={() => handleAddNewPost()}>Add new post</Button>
+            {
+                addNewPost ? <>
+                    <input placeholder='title' value={newPostTitle}
+                        onChange={(e) => setNewPostTitle(e.target.value)}
+                    />
+                    <input placeholder='body' value={newPostBody}
+                        onChange={(e) => setNewPostBody(e.target.value)} />
+                    <button onClick={() => handleSubmitNewPost()}>submit</button>
+                    <button onClick={() => handleCancel()}>Cancel</button>
+                </> : null
+            }
             {
                 postList ? (
-                    <><Button onClick={() => handleAddNewPost()}>Add new post</Button>
+                    <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
                         {
-                            addNewPost ? <>
-                                <input placeholder='title' value={newPostTitle}
-                                    onChange={(e) => setNewPostTitle(e.target.value)}
-                                />
-                                <input placeholder='body' value={newPostBody}
-                                    onChange={(e) => setNewPostBody(e.target.value)} />
-                                <button onClick={() => handleSubmitNewPost()}>submit</button>
-                                <button onClick={() => handleCancel()}>Cancel</button>
-                            </> : null
+                            postList ? postList.map((post: any) => {
+                                return <SinglePost key={post._id} post={post} />
+                            }) : (<p>"No post yet"</p>)
                         }
-                        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                            {
-                                postList ? postList.map((post: any) => {
-                                    return <SinglePost key={post._id} post={post} />
-                                }) : (<p>"No post yet"</p>)
-                            }
-                        </List></>) : (<>NO POST YET</>)
+                    </List>) : (<p>No post yet</p>)
             }
 
         </>
