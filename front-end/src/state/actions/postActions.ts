@@ -89,6 +89,49 @@ export const add_new_post = (title: string, body: string) => {
     }
   };
 };
+
+// Update a post
+export const update_a_post = (postId: any, newpost: any) => {
+  return async function (dispatch: any, getState: any) {
+    const token = getState().user.token;
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `http://localhost:5001/api/posts/update/${postId}`,
+      {
+        title: newpost.postTitle,
+        body: newpost.postBody,
+      },
+      config
+    );
+
+    console.log(data);
+
+    dispatch({
+      type: ActionType.UPDATE_POST,
+      payload: data,
+    });
+
+    // Update local storage
+    // Better to store posts as dictionary
+    const local_posts = JSON.parse(localStorage.getItem("posts")!);
+    for (let i = 0; i < local_posts!.length; i++) {
+      if (local_posts[i]._id === postId) {
+        local_posts[i].title = newpost.postTitle;
+        local_posts[i].body = newpost.postBody;
+        break;
+      }
+    }
+
+    localStorage.setItem("posts", JSON.stringify(local_posts));
+  };
+};
 // Delete a post
 export const delete_a_post = (postId: string) => {
   return async function (dispatch: any, getState: any) {
@@ -152,6 +195,10 @@ interface CreateAPost {
   type: ActionType.CREATE_POST;
   payload: any;
 }
+interface UpdatePost {
+  type: ActionType.UPDATE_POST;
+  payload: any;
+}
 interface DeleteAPost {
   type: ActionType.DELETE_POST;
   payload: any;
@@ -164,4 +211,5 @@ export type Action =
   | GetPostFail
   | DeleteAPost
   | CreateAPost
+  | UpdatePost
   | UserLogOut;

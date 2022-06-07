@@ -54,8 +54,3 @@ const PostList: React.FunctionComponent = () => {
 }
 
 export default PostList
-
-function handleSubmitNewPost(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
-    throw new Error('Function not implemented.');
-}
-

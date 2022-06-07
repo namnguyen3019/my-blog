@@ -12,6 +12,11 @@ export const postReducers = (state: [] = initialized, action: Action) => {
       return state.filter((x: { _id: any }) => x._id !== action.payload);
     case ActionType.CREATE_POST:
       return [action.payload, ...state];
+    case ActionType.UPDATE_POST:
+      return [
+        action.payload,
+        ...state.filter((x: { _id: any }) => x._id !== action.payload._id),
+      ];
     case ActionType.USER_LOGOUT:
       return [];
     default:

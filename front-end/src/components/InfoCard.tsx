@@ -8,6 +8,8 @@ export default function InforCard() {
         <Card sx={{ minWidth: 200, textAlign: "center", mx: "auto" }}>
             <CardContent>
                 <p>About Me</p>
+                <p>My nam is Nam Nguyen</p>
+                <p> I am a software Engineer</p>
             </CardContent>
             <CardActions>
                 <Button size="small">Learn More</Button>
