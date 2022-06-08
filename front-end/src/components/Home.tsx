@@ -7,11 +7,18 @@ import MainContent from './MainContent';
 import MyMenu from './MyMenu';
 const Home: React.FunctionComponent = () => {
     const user = useSelector((state: RootState) => state.user)
+    const userToken = user ? user.token : null
     return (
         <Container>
             <MyMenu />
-            <FeaturePost />
-            <MainContent />
+            {
+                userToken ? (
+                    <> <FeaturePost />
+                        <MainContent /></>
+
+                ) : (<p> Login to write your first post</p>)
+            }
+
         </Container>
     )
 }
