@@ -15,7 +15,6 @@ const Home: React.FunctionComponent = () => {
                 userToken ? (
                     <> <FeaturePost />
                         <MainContent /></>
-
                 ) : (<p> Login to write your first post</p>)
             }
 
